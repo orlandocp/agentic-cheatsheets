@@ -24,3 +24,7 @@ Each lesson is already turned into a rule; this file explains why the rule exist
 | `/fork` and "Fork" produced the same id. | Glossary titles starting with `/` get `g-cmd-*` ids. |
 | The glossary was incomplete and out of order. | Every defined term, alphabetical. |
 | The author told the user the sheet was perfect. | Report what was checked and what was not. |
+| The pilot tagged only 59 of about 220 claims, so an update re-checked a fraction of the sheet. | `update` also records every untagged claim. |
+| Some `data-fact` quotes were on the topic but did not state the claim. | A quote must state the claim. |
+| Advice carried unsourced facts: "almost always", "low cost", "no guarantee". | Advice may not state facts. |
+| Headless Edge hung and blocked the review. | Screenshots time out and the report says so. |

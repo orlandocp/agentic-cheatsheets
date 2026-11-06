@@ -18,6 +18,9 @@ Content accuracy comes first. Format never compensates for a wrong fact.
   - `undocumented`: the source does not say it. The sheet states "the documentation does not say …"
     or leaves it out.
 - Never infer. Do not combine facts into a claim no source states.
+- A `data-fact` counts only if its quote states the claim. A quote on the same topic is not enough.
+- Advice ("use it for…", "avoid it when…") is allowed as long as it states no fact. Any fact
+  inside it (a cost, a behavior, a frequency such as "almost always") needs its own row.
 - Record the date read and the product version. Show both in the sheet header.
 
 ## Maturity and availability

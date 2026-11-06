@@ -23,7 +23,8 @@ lessons).
    the sheet folder in it by topic, or by the
    `artifact_url` in its `sources.json`. Read `index.html`, `facts.json` and `sources.json`.
 2. **Re-read.** Spawn `cheatsheet:researcher` in parallel:
-   - one per recorded source, to re-check its facts;
+   - one per recorded source, to re-check its facts and to record every claim in the sheet on
+     that source that has no `data-fact`, or whose quote does not state it;
    - one for the official changelog since `last_read`;
    - one to look for new official pages on the topic.
 3. **Compare.** Classify each difference:

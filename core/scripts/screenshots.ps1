@@ -32,9 +32,23 @@ Write-Page 'phone.html' '<!doctype html><html><body style="margin:0;background:#
 
 function Shot($page, $png, $size) {
   $url = 'file:///' + ((Join-Path $Out $page) -replace '\\', '/')
+  $target = Join-Path $Out $png
+  Remove-Item $target -ErrorAction SilentlyContinue   # a stale image must never pass as fresh
   $argv = @('--headless=new', '--disable-gpu', '--hide-scrollbars', "--user-data-dir=$Out\edge-profile",
-            '--virtual-time-budget=6000', "--window-size=$size", "--screenshot=$(Join-Path $Out $png)", $url)
-  Start-Process -FilePath $edge -ArgumentList $argv -Wait -WindowStyle Hidden
+            '--virtual-time-budget=6000', "--window-size=$size", "--screenshot=$target", $url)
+  $p = Start-Process -FilePath $edge -ArgumentList $argv -WindowStyle Hidden -PassThru
+  if (-not $p.WaitForExit(60000)) {
+    # Kill only the Edge processes that use this script's profile.
+    Get-CimInstance Win32_Process -Filter "Name='msedge.exe'" |
+      Where-Object { $_.CommandLine -like "*$Out\edge-profile*" } |
+      ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+    Write-Warning "Timed out after 60 s: $png was not produced. Say so in the report."
+    return
+  }
+  # msedge.exe can hand off to another process and exit before the image is written.
+  $deadline = (Get-Date).AddSeconds(60)
+  while (-not (Test-Path $target) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 500 }
+  if (-not (Test-Path $target)) { Write-Warning "$png was not produced within 60 s. Say so in the report." }
 }
 if ($figs) { Shot 'figures-light.html' 'figures-light.png' '860,1600'; Shot 'figures-dark.html' 'figures-dark.png' '860,1600' }
 Shot 'phone.html' 'phone.png' '500,4000'
