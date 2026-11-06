@@ -1,0 +1,8 @@
+{
+  "name": "cheatsheet",
+  "version": "0.1.0",
+  "description": "Create and update rigorous, source-verified cheatsheets (single-page HTML references) on any topic.",
+  "author": { "name": "orlandocp" },
+  "repository": "https://github.com/orlandocp/agentic-cheatsheets",
+  "license": "MIT"
+}

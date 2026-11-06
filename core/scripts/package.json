@@ -1,0 +1,8 @@
+{
+  "name": "agentic-cheatsheets-scripts",
+  "private": true,
+  "description": "Checks for cheatsheets. Install with: npm install --prefix <dir> and set CHEATSHEET_NODE_MODULES=<dir>/node_modules",
+  "dependencies": {
+    "jsdom": "24.1.3"
+  }
+}

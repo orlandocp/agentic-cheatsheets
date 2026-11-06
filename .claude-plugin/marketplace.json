@@ -1,0 +1,12 @@
+{
+  "name": "agentic-cheatsheets",
+  "owner": { "name": "orlandocp" },
+  "description": "Tools for building source-verified cheatsheets with AI coding agents.",
+  "plugins": [
+    {
+      "name": "cheatsheet",
+      "source": "./",
+      "description": "Create and update rigorous, source-verified cheatsheets on any topic."
+    }
+  ]
+}
