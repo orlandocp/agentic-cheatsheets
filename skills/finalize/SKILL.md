@@ -12,7 +12,8 @@ Sheet folder: $ARGUMENTS
 ## Responsibility
 - Does: review through `cheatsheet:reviewer`, fix confirmed findings, publish, report, and commit
   with approval.
-- Does not: add new content or facts. A missing fact goes back to the user.
+- Does not: add new content or facts. When a fix needs one, it stops and reports it; the user
+  chooses between an `update` run and leaving it for later.
 
 ## Steps
 1. **Review.** Spawn `cheatsheet:reviewer` with only the path to `index.html`. Never pass your own
@@ -24,13 +25,14 @@ Sheet folder: $ARGUMENTS
 4. **Publish.**
    - If an Artifact tool is available, publish `index.html`.
    - On an update, publish to the `artifact_url` in `sources.json`.
-   - Save a new URL in `sources.json`.
+   - If publishing created a new URL, save it in `sources.json`.
    - If there is no Artifact tool, the local file is the result.
 5. **Report** to the user:
    - what was checked and how;
    - the findings fixed and the ones rejected;
+   - blocking findings still open after round 3;
    - the facts marked "verify";
-   - what was not checked.
+   - what was not checked, including screenshots that failed or covered only part of the page.
 
    Never call the sheet perfect.
 6. **Commit.** If the sheets folder is a git repo, show the diff summary and commit only after the

@@ -14,7 +14,8 @@ Content accuracy comes first. Format never compensates for a wrong fact.
 - Every fact keeps a verbatim quote from the source.
 - Status of a fact:
   - `verbatim`: the quote was read word for word in the source.
-  - `summary`: seen only in a summary or partial read. Shown with the "verify" badge.
+  - `summary`: seen only in a summary or partial read. Shown with the "verify" badge. Before the
+    sheet uses it, get a second, verbatim read of that point.
   - `undocumented`: the source does not say it. The sheet states "the documentation does not say …"
     or leaves it out.
 - Never infer. Do not combine facts into a claim no source states.
@@ -33,6 +34,11 @@ Content accuracy comes first. Format never compensates for a wrong fact.
 [{ "id": "F12", "claim": "...", "quote": "...", "url": "...", "section": "...",
    "read": "YYYY-MM-DD", "status": "verbatim|summary|undocumented", "used_in": ["cards", "limits"] }]
 ```
+- `id`: unique; never reused, even after the fact is removed.
+- `section`: the heading of the source page where the quote is. Empty if unknown.
+- `used_in`: the ids of the sheet sections whose elements carry this `data-fact`. Fill it from
+  the HTML after writing.
+- No other fields. The researcher's working fields (`change`, `sheet_text`, `note`) are not stored.
 
 ## `sources.json`
 ```json

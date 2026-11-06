@@ -29,8 +29,8 @@ lessons). They override any habit.
 2. **Folder.** Get the sheets folder with `printenv CHEATSHEETS_DIR`. If it is empty, use
    `./cheatsheets`. Create `<folder>/<topic-slug>/`.
 3. **Facts.** Spawn one `cheatsheet:researcher` per source, in parallel. Give each one the URL and
-   the questions the sheet must answer. Merge the results into `facts.json`, with unique ids `F1`…
-   For any `summary` fact, spawn a second researcher with a verbatim re-read of that point.
+   the questions the sheet must answer. Merge the results into `facts.json` (`content.md`), with
+   ids from `F1`.
 4. **Outline.** Show the user:
    - the sections, following `structure.md`;
    - the variants, with canonical names, numbers and families;
@@ -41,5 +41,6 @@ lessons). They override any habit.
 5. **Write** `index.html` from `${CLAUDE_PLUGIN_ROOT}/core/template.html`:
    - put `data-fact` on every technical claim;
    - fill the definition-link config;
-   - write `sources.json` (`content.md`) and a first `CHANGELOG.md` entry.
+   - fill `used_in` in `facts.json`, and write `sources.json` (`content.md`) and a first
+     `CHANGELOG.md` entry.
 6. **Finish.** Invoke the `finalize` skill with the sheet folder.

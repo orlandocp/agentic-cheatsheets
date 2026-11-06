@@ -15,6 +15,18 @@ Follow `${CLAUDE_PLUGIN_ROOT}/core/guidelines/content.md`.
   never infer.
 - Record status labels (experimental, preview, beta, deprecated) and plan or platform limits.
 
+## Input
+- Always: one source URL and what to look for.
+- When re-checking: the facts already recorded from that source, with their ids.
+- When given a sheet: the path to its `index.html`.
+
 ## Output
-Return only a JSON array of facts in the `facts.json` format, without ids, plus one final line:
+Return only a JSON array in the `facts.json` format, plus one final line:
 `Pages read: <urls>; partial reads: <urls or none>`.
+- New facts: no `id`.
+- Recorded facts you were given: keep their `id` and add `change`: `unchanged`, `changed` (new
+  quote or value), `confirmed` (was `summary`, now read verbatim) or `gone` (no longer in the
+  source).
+- If you were given a sheet: also return a fact, without `id`, for each claim in it about this
+  source that has no `data-fact` or whose quote does not state it. Add `sheet_text` with the exact
+  sheet text the fact covers, and say in `note` if the source contradicts it.
